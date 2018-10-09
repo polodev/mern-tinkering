@@ -33,3 +33,33 @@ const hostname = os.hostname()
 ~~~js
 const server = app.listen(port, () => console.log(`server runnon on port - http://localhost:${server.address().port} `))
 ~~~
+
+# setting up express router in multiple files 
+
+~~~js
+// server.js 
+const users = require('./routes/api/users')
+const posts = require('./routes/api/posts')
+
+const app = express();
+app.use('/api/users', users)
+app.use('/api/posts', posts)
+
+// routes/api/users.js
+const express = require('express')
+
+const router = express.Router();
+
+/**
+ * @route  GET /api/users/test
+ * @desc   testing users router
+ * @access Public
+ */
+router.get('/test', (req, res) => res.json({"message": "OK"}))
+
+// routes/api/posts.js
+const express = require('express')
+const router = express.Router();
+router.get('/test', (req, res) => res.json({"message": "OK"}))
+module.exports = router
+~~~
