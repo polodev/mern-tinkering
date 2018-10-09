@@ -1,7 +1,11 @@
 const express = require('express')
 const os = require('os')
 const hostname = os.hostname()
-console.log('hostname', hostname)
+const db = require('./config/keys').mongoURI
+const mongoose = require('mongoose')
+mongoose.connect(db,  { useNewUrlParser: true })
+  .then(() => console.log('success'))
+  .catch((error) => console.log('failed to connect' + error))
 
 const app = express();
 
