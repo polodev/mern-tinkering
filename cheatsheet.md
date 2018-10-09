@@ -63,3 +63,22 @@ const router = express.Router();
 router.get('/test', (req, res) => res.json({"message": "OK"}))
 module.exports = router
 ~~~
+
+# how to create a mongoose schema 
+
+~~~js
+const mongoose = require('mongoose')
+
+const userSchema = new mongoose.Schema({
+	name: {
+		type: String,
+		required: true,
+	},
+	date: {
+		type: Date,
+		default: Date.now
+	}
+})
+
+module.exports = User = mongoose.model('users', userSchema)
+~~~
